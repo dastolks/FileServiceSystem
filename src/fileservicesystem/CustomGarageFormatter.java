@@ -37,8 +37,9 @@ public class CustomGarageFormatter implements FileFormatterStrategy {
         String sTotalFees = dataFromFile.get(1);        
         List<Map<String,String>> appInfo = new ArrayList<>();
         Map<String,String> record = new HashMap<>();
-        record.put("totalHours", sTotalHours);
+        
         record.put("totalFees", sTotalFees);
+	record.put("totalHours", sTotalHours);
         appInfo.add(record);
         return appInfo;
     }

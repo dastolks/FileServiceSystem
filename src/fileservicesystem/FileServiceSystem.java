@@ -5,6 +5,8 @@
  */
 package fileservicesystem;
 
+import java.io.File;
+
 /**
  *
  * @author aschindler1
@@ -15,7 +17,9 @@ public class FileServiceSystem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+       String filePath = "src" + File.separatorChar + "CustomGarageFormat.txt";
+       FileFormatterStrategy frf = new CustomGarageFormatter();
+       
     }
     
 }

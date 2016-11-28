@@ -6,9 +6,12 @@
 package fileservicesystem;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -17,34 +20,33 @@ import java.util.Map;
  *
  * @author Alec
  */
-public class TextFileReader implements FileReaderStrategy {
+public class TextFileWriter implements FileWriterStrategy {
     private FileFormatterStrategy fss;
     private String filePath;
 
-    public TextFileReader(String filePath) {
+    public TextFileWriter(String filePath) {
        setFilePath(filePath);
     }
 
-    public TextFileReader(FileFormatterStrategy fss, String filePath) {
+    public TextFileWriter(FileFormatterStrategy fss, String filePath) {
         setFileFormatterStrategy(fss);
         setFilePath(filePath);
     }
-
+    
     @Override
-    public List<Map<String,String>> readFile() throws IOException{
-        File dataToRetrieve = new File(filePath);
-        BufferedReader in = new BufferedReader(new FileReader(dataToRetrieve));
-        List<String> lines = new ArrayList<>();
-	String line = in.readLine();
-	while(line != null){
-            lines.add(line);
-            line = in.readLine();  // strips out any carriage return chars
-	}
-        return fss.decode(lines);      
+    public void addLine(String lineAdded, boolean append) throws IOException{
+	File data = new File(filePath);
+	PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(data, append)));
+	out.println(lineAdded);
+	out.close();
     }
-    
-    
-    
+    @Override
+    public void addLine(String lineAdded, String characterInBetween, boolean append) throws IOException{
+	File data = new File(filePath);
+	PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(data, append)));
+	out.println(lineAdded + characterInBetween);
+	out.close();
+    }
     
     @Override
     public FileFormatterStrategy getFileFormatterStrategy() {
@@ -75,12 +77,6 @@ public class TextFileReader implements FileReaderStrategy {
         else{
             this.filePath = filePath;
         }
-    }
-    
-    public static void main(String[] args) throws Exception{
-        TextFileReader tfr = new TextFileReader(new CustomGarageFormatter(), "src" + File.separatorChar + "CustomGarageFormat.txt");
-        List<Map<String,String>> better = tfr.readFile();
-        System.out.println(better.get(0));
-    }
-    
+    }   
+       
 }
