@@ -19,13 +19,15 @@ public class StartUp {
 	    FileWriterStrategy tfw = new TextFileWriter(new CustomGarageFormatter(), "src" + File.separatorChar + "CustomGarageFormat.txt");
 	    FileReaderStrategy tfr = new TextFileReader(new CustomGarageFormatter(), "src" + File.separatorChar + "CustomGarageFormat.txt");
 	    List<Map<String,String>> better = tfr.readFile();
+	    System.out.println("Before edit:");
 	    System.out.println(better.get(0));
 	    
 	    tfw.addLine("20.6", false);
 	    tfw.addLine("10.6", true);
-	    
+	    System.out.println("After edits:");
 	    better = tfr.readFile();
 	    System.out.println(better.get(0));	    
+	    
 	    
 	}
 	catch(IOException ec){
