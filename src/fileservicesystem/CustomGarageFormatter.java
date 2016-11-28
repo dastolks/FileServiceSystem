@@ -14,7 +14,7 @@ import java.util.Map;
  *
  * @author aschindler1
  */
-public class CustomGarageFormatter {
+public class CustomGarageFormatter implements FileFormatterStrategy {
     private final String TOTAL_HOURS = "totalHours";
     private final String TOTAL_FEES = "totalFees";
     private final String CHAR_SPACER = "\n";
@@ -23,6 +23,7 @@ public class CustomGarageFormatter {
         
     }
     
+    @Override
     public String encode (List<Map<String,String>> dataFromApp){
         Map<String,String> mapSet = dataFromApp.get(0);
         String sTotalHours = mapSet.get(TOTAL_HOURS);
@@ -30,6 +31,7 @@ public class CustomGarageFormatter {
         return sTotalHours + CHAR_SPACER + sTotalFees + CHAR_SPACER;
     }
     
+    @Override
     public List<Map<String,String>> decode (List<String> dataFromFile){
         String sTotalHours = dataFromFile.get(0);
         String sTotalFees = dataFromFile.get(1);        
