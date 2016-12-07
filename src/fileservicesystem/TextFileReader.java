@@ -77,10 +77,4 @@ public class TextFileReader implements FileReaderStrategy {
         }
     }
     
-    public static void main(String[] args) throws Exception{
-        TextFileReader tfr = new TextFileReader(new CustomGarageFormatter(), "src" + File.separatorChar + "CustomGarageFormat.txt");
-        List<Map<String,String>> better = tfr.readFile();
-        System.out.println(better.get(0));
-    }
-    
 }

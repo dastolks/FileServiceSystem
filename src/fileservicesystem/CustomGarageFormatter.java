@@ -44,16 +44,16 @@ public class CustomGarageFormatter implements FileFormatterStrategy {
         return appInfo;
     }
     
-    public static void main(String[] args) {
-        CustomGarageFormatter cgf = new CustomGarageFormatter();
-        List<Map<String,String>> testMap = new ArrayList<>();
-        Map<String, String> record = new HashMap<>();
-        record.put("totalHours", "20.5");
-        record.put("totalFees", "26.80");
-        testMap.add(record);
-        System.out.println(cgf.encode(testMap));
-        
-        
-        
-    }
+//    public static void main(String[] args) {
+//        CustomGarageFormatter cgf = new CustomGarageFormatter();
+//        List<Map<String,String>> testMap = new ArrayList<>();
+//        Map<String, String> record = new HashMap<>();
+//        record.put("totalHours", "20.5");
+//        record.put("totalFees", "26.80");
+//        testMap.add(record);
+//        System.out.println(cgf.encode(testMap));
+//        
+//        
+//        
+//    }
 }
